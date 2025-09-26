@@ -7,7 +7,7 @@ on:
 
 permissions:
   contents: write
-  
+
 jobs:
 
   calculate_version:
@@ -91,10 +91,17 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-
+      - name: Extract version (without v)
+        id: vars
+        run: |
+          VERSION_NO_V=${VERSION#v}
+          echo "VERSION_NO_V=$VERSION_NO_V" >> $GITHUB_ENV
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
           context: .
+          file: ./docker/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/keycloak-tailwind:latest
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/keycloak-tailwind:${{ env.VERSION_NO_V }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/keycloak-tailwind:latest
