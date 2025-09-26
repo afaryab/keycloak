@@ -91,7 +91,7 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-          
+
       - name: Extract version (without v)
         id: vars
         run: |
@@ -104,5 +104,5 @@ jobs:
           file: ./docker/Dockerfile
           push: true
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/keycloak-tailwind:${{ env.VERSION_NO_V }}
-            ${{ secrets.DOCKERHUB_USERNAME }}/keycloak-tailwind:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/keycloaktailwind:${{ env.VERSION_NO_V }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/keycloaktailwind:latest
