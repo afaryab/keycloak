@@ -1,0 +1,61 @@
+services:
+
+  keycloak:
+    build: .
+    image: ahmadfaryabkokab/keycloak-tailwind
+    restart: unless-stopped
+    container_name: cloud_keycloak
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_DB: postgres
+      KC_DB_URL_HOST: keycloak_db
+      KC_DB_URL_DATABASE: keycloak
+      KC_DB_USERNAME: keycloak
+      KC_DB_PASSWORD: keycloak
+      KC_HOSTNAME_STRICT: false
+      KC_HOSTNAME_STRICT_HTTPS: false
+      KC_HTTP_ENABLED: true
+      KC_HOSTNAME_STRICT_BACKCHANNEL: false
+      KC_PROXY: edge
+    command: start-dev --http-enabled=true --hostname-strict=false --hostname-strict-https=false
+    # Theme is now built and copied in Dockerfile, no need to mount
+    # volumes:
+    #   - ./keycloak/themes:/opt/keycloak/themes
+    ports:
+      - "80:8080"
+    depends_on:
+      - keycloak_db
+    networks:
+      - keycloak
+
+  node:
+    image: node:18
+    container_name: cloud_node
+    command: npm run dev
+    restart: unless-stopped
+    volumes:
+      - ./keycloak:/app
+    working_dir: /app
+    networks:
+      - keycloak
+
+  keycloak_db:
+    image: postgres:15
+    restart: unless-stopped
+    container_name: cloud_keycloak_db
+    environment:
+      POSTGRES_DB: keycloak
+      POSTGRES_USER: keycloak
+      POSTGRES_PASSWORD: keycloak
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    networks:
+      - keycloak
+
+volumes:
+  n8n_data:
+networks:
+  keycloak:
+      name: keycloak
+      driver: bridge

@@ -1,0 +1,69 @@
+/* Keycloak Override Styles */
+
+/* Hide default Keycloak branding */
+.login-pf-brand {
+  display: none;
+}
+
+/* Override card padding */
+.card-pf {
+  padding: 0 !important;
+}
+
+.card-pf-body {
+  padding: 2rem !important;
+}
+
+/* Fix form spacing */
+.login-pf-page .card-pf {
+  margin: 0 !important;
+}
+
+/* Fix button alignment */
+#kc-form-buttons {
+  text-align: left !important;
+}
+
+/* Override default form styling */
+.form-control {
+  all: unset;
+}
+
+/* Hide default alerts styling */
+.alert.alert-error {
+  all: unset;
+}
+
+/* Clean up social providers */
+.kc-social-providers {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Fix info wrapper */
+#kc-info-wrapper {
+  margin: 0 !important;
+}
+
+/* Clean up headers */
+#kc-page-title {
+  display: none;
+}
+
+/* Override any remaining bootstrap classes */
+.form-group {
+  margin-bottom: 1.5rem !important;
+}
+
+.btn {
+  border: none !important;
+  text-shadow: none !important;
+  box-shadow: none !important;
+}
+
+.btn:focus,
+.btn:active {
+  box-shadow: none !important;
+  outline: 2px solid var(--primary-color) !important;
+  outline-offset: 2px !important;
+}

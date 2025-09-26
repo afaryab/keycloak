@@ -1,0 +1,9 @@
+/* Custom background pattern for the hero section */
+.hero-pattern {
+    background-color: #10b981;
+    background-image: 
+        radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 2px, transparent 2px),
+        radial-gradient(circle at 75% 75%, rgba(255,255,255,0.1) 2px, transparent 2px),
+        linear-gradient(45deg, transparent 25%, rgba(255,255,255,0.05) 25%, rgba(255,255,255,0.05) 50%, transparent 50%, transparent 75%, rgba(255,255,255,0.05) 75%);
+    background-size: 20px 20px, 20px 20px, 40px 40px;
+}

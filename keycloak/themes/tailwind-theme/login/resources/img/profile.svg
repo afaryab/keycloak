@@ -1,0 +1,61 @@
+<svg width="300" height="400" viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="skinGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#d4a574;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#c49464;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="shirtGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8b9a7a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7a8a6a;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="hairGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4a3a2a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3a2a1a;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Body/Shirt -->
+  <path d="M50 300 Q50 280 70 270 L110 250 Q130 240 150 250 L230 250 Q250 240 270 250 L310 270 Q320 280 320 300 L330 400 L40 400 Z" fill="url(#shirtGrad)"/>
+  
+  <!-- Shirt collar -->
+  <path d="M130 250 Q150 240 150 250 Q150 240 170 250" stroke="#6a7a5a" stroke-width="2" fill="none"/>
+  
+  <!-- Neck -->
+  <ellipse cx="150" cy="240" rx="25" ry="20" fill="url(#skinGrad)"/>
+  
+  <!-- Face -->
+  <ellipse cx="150" cy="180" rx="50" ry="60" fill="url(#skinGrad)"/>
+  
+  <!-- Hair -->
+  <path d="M100 140 Q110 100 130 90 Q150 80 170 90 Q190 100 200 140 Q200 160 190 180 Q180 190 170 185 Q160 180 150 185 Q140 180 130 185 Q120 190 110 180 Q100 160 100 140 Z" fill="url(#hairGrad)"/>
+  
+  <!-- Eyes -->
+  <ellipse cx="135" cy="170" rx="8" ry="6" fill="white"/>
+  <ellipse cx="165" cy="170" rx="8" ry="6" fill="white"/>
+  <circle cx="135" cy="170" r="4" fill="#2a2a2a"/>
+  <circle cx="165" cy="170" r="4" fill="#2a2a2a"/>
+  <circle cx="136" cy="168" r="1.5" fill="white"/>
+  <circle cx="166" cy="168" r="1.5" fill="white"/>
+  
+  <!-- Eyebrows -->
+  <path d="M128 160 Q135 155 142 160" stroke="#3a2a1a" stroke-width="2" stroke-linecap="round"/>
+  <path d="M158 160 Q165 155 172 160" stroke="#3a2a1a" stroke-width="2" stroke-linecap="round"/>
+  
+  <!-- Nose -->
+  <ellipse cx="150" cy="185" rx="3" ry="6" fill="#c49464" opacity="0.5"/>
+  
+  <!-- Mouth -->
+  <path d="M140 200 Q150 210 160 200" stroke="#b8845a" stroke-width="2" stroke-linecap="round" fill="none"/>
+  
+  <!-- Facial hair/beard -->
+  <path d="M120 210 Q130 220 140 215 Q150 225 160 215 Q170 220 180 210" stroke="#3a2a1a" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+  
+  <!-- Shirt details -->
+  <circle cx="150" cy="290" r="3" fill="#6a7a5a"/>
+  <circle cx="150" cy="310" r="3" fill="#6a7a5a"/>
+  <circle cx="150" cy="330" r="3" fill="#6a7a5a"/>
+  
+  <!-- Subtle background elements -->
+  <circle cx="250" cy="100" r="30" fill="rgba(255,255,255,0.05)"/>
+  <circle cx="50" cy="350" r="40" fill="rgba(255,255,255,0.03)"/>
+</svg>
