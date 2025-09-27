@@ -17,4 +17,8 @@ FROM quay.io/keycloak/keycloak:24.0
 COPY --from=build /build/tailwind-theme /opt/keycloak/themes/tailwind-theme
 
 ENTRYPOINT ["/opt/keycloak/bin/kc.sh"]
+
+# Build and run in development mode with custom settings
+RUN /opt/keycloak/bin/kc.sh build
+
 CMD ["start"]
