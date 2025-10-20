@@ -1,145 +1,186 @@
 # Keycloak Tailwind Theme
 
-A modern, responsive Keycloak theme built with Tailwind CSS.
+A modern, production-ready Keycloak theme built with Tailwind CSS.
 
 ## Features
 
-- 🎨 Modern, clean design with Tailwind CSS
-- 📱 Fully responsive layout
+- ✨ Modern Tailwind CSS design
+- 🎨 Dynamic color theming (9 color options)
+- 🌍 Full internationalization support
+- 🔐 Complete authentication screens (login, register, password reset, etc.)
+- 👤 User account management theme
+- 📱 Responsive design
 - ♿ Accessible components
-- 🌙 Dark mode support (system preference)
-- 🎯 Smooth animations and transitions
-- 🔒 Professional login/registration forms
+- 🎯 Environment-based customization
 
-## Setup Instructions
+## Theme Types
 
-### 1. Install Dependencies (Optional - for development)
+This theme includes:
 
-If you want to customize the CSS further:
+1. **Login Theme** - Authentication screens (login, register, password reset, 2FA, etc.)
+2. **Account Theme** - User profile and account management screens
+3. **Admin Console** - Uses default Keycloak theme (as per design requirements)
 
+## Environment Variables
+
+You can customize the theme using the following environment variables:
+
+### Logo Path
+Set a custom logo path:
+```bash
+KC_THEME_LOGO_PATH=img/custom-logo.png
+```
+
+### Theme Color
+Choose from the following color schemes:
+```bash
+KC_THEME_COLOR=emerald  # Default
+# Options: blue, green, emerald, red, purple, pink, indigo, yellow, orange
+```
+
+### Background Image
+Set a custom background image:
+```bash
+KC_THEME_BG_IMAGE=img/custom-background.svg
+```
+
+## Usage with Docker
+
+### Build the Image
+```bash
+docker build -t keycloak-tailwind .
+```
+
+### Run with Custom Configuration
+```bash
+docker run -d \
+  -e KEYCLOAK_ADMIN=admin \
+  -e KEYCLOAK_ADMIN_PASSWORD=admin \
+  -e KC_THEME_COLOR=blue \
+  -e KC_THEME_LOGO_PATH=img/my-logo.png \
+  -p 8080:8080 \
+  keycloak-tailwind start-dev
+```
+
+### With Docker Compose
+```yaml
+services:
+  keycloak:
+    image: keycloak-tailwind
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_THEME_COLOR: purple
+      KC_THEME_LOGO_PATH: img/logo.png
+    ports:
+      - "8080:8080"
+```
+
+## Development
+
+### Prerequisites
+- Node.js 18+
+- npm
+
+### Install Dependencies
 ```bash
 cd keycloak
 npm install
 ```
 
-### 2. Build CSS (Optional)
-
-To rebuild the Tailwind CSS:
-
+### Build CSS
 ```bash
-cd keycloak
 npm run build
 ```
 
-For development with auto-rebuild:
-
+### Watch Mode (Development)
 ```bash
-cd keycloak
-npm run build-css
+npm run dev
 ```
-
-### 3. Restart Keycloak
-
-The theme is automatically mounted when you restart Keycloak:
-
-```bash
-docker-compose restart keycloak
-```
-
-### 4. Configure Keycloak to Use the Theme
-
-1. Go to your Keycloak admin console: `http://localhost:9999`
-2. Login with admin/admin
-3. Navigate to **Realm Settings** > **Themes**
-4. Set **Login theme** to `tailwind-theme`
-5. Click **Save**
 
 ## Theme Structure
 
 ```
-keycloak/
-├── themes/
-│   └── tailwind-theme/
-│       ├── theme.properties          # Theme configuration
-│       └── login/
-│           ├── login.ftl            # Login page template
-│           ├── register.ftl         # Registration page template
-│           ├── template.ftl         # Base template
-│           └── resources/
-│               ├── css/
-│               │   ├── tailwind.css # Main Tailwind styles
-│               │   └── login.css    # Keycloak overrides
-│               ├── js/              # JavaScript files
-│               └── img/             # Images and icons
-├── src/
-│   └── input.css                    # Tailwind source file
-├── package.json                     # NPM dependencies
-├── tailwind.config.js              # Tailwind configuration
-└── README.md                        # This file
+themes/tailwind-theme/
+├── login/                      # Login theme
+│   ├── messages/              # Translations
+│   │   └── messages_en.properties
+│   ├── resources/
+│   │   ├── css/
+│   │   ├── js/
+│   │   └── img/
+│   ├── template.ftl           # Base template
+│   ├── login.ftl              # Login page
+│   ├── register.ftl           # Registration page
+│   └── ...                    # Other auth pages
+├── account/                    # Account theme
+│   ├── messages/              # Translations
+│   ├── resources/
+│   ├── template.ftl           # Base template
+│   ├── account.ftl            # Profile page
+│   ├── password.ftl           # Password page
+│   └── sessions.ftl           # Sessions page
+└── theme.properties           # Theme configuration
 ```
 
 ## Customization
 
-### Colors
+### Adding Custom Colors
 
-The theme uses CSS custom properties for easy color customization. Edit the `:root` section in `login/resources/css/tailwind.css`:
+Edit `themes/tailwind-theme/login/template.ftl` or `themes/tailwind-theme/account/template.ftl` to add new color schemes in the CSS variables section.
 
-```css
-:root {
-  --primary-color: #3b82f6;        /* Blue-500 */
-  --primary-dark: #1d4ed8;         /* Blue-700 */
-  --secondary-color: #6b7280;      /* Gray-500 */
-  /* ... more colors */
-}
-```
+### Adding Translations
 
-### Fonts
+Add new message files in the `messages/` directory:
+- `messages_en.properties` - English (default)
+- `messages_es.properties` - Spanish
+- `messages_fr.properties` - French
+- etc.
 
-The theme uses Inter font from Google Fonts. To change it, update the `@import` statement and the CSS custom properties.
+### Custom Logo
 
-### Layout
+1. Place your logo in `themes/tailwind-theme/login/resources/img/`
+2. Set the environment variable: `KC_THEME_LOGO_PATH=img/your-logo.png`
 
-The main layout is defined in `template.ftl`. The individual page layouts are in their respective `.ftl` files.
+## Color Schemes
 
-## Available Pages
+The theme supports the following color schemes out of the box:
 
-Currently themed pages:
-- ✅ Login (`login.ftl`)
-- ✅ Registration (`register.ftl`)
-- ✅ Base template (`template.ftl`)
+- **Emerald** (default) - Fresh and modern green
+- **Blue** - Professional and trustworthy
+- **Green** - Natural and calming
+- **Purple** - Creative and unique
+- **Red** - Bold and energetic
+- **Indigo** - Deep and sophisticated
+- **Pink** - Friendly and approachable
+- **Yellow** - Bright and optimistic
+- **Orange** - Warm and inviting
 
-Additional pages can be added by creating corresponding `.ftl` files.
+Each color automatically generates all necessary shades (50-900) for consistent theming.
 
-## Development
+## Internationalization
 
-### Adding New Templates
+All text is externalized using Keycloak's message system. To add a new language:
 
-1. Create a new `.ftl` file in `keycloak/themes/tailwind-theme/login/`
-2. Import the base template: `<#import "template.ftl" as layout>`
-3. Use the layout macro: `<@layout.registrationLayout>`
-4. Add your custom HTML with Tailwind classes
-
-### CSS Development
-
-1. Edit `src/input.css` for source styles
-2. Run `npm run build-css` to watch for changes
-3. Restart Keycloak to see changes
+1. Create `messages_XX.properties` in the `messages/` directory
+2. Translate all keys from `messages_en.properties`
+3. The theme will automatically detect and use the appropriate language
 
 ## Browser Support
 
-- ✅ Chrome/Chromium (latest)
-- ✅ Firefox (latest)
-- ✅ Safari (latest)
-- ✅ Edge (latest)
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test with Keycloak
-5. Submit a pull request
+- Chrome/Edge (latest)
+- Firefox (latest)
+- Safari (latest)
+- Mobile browsers (iOS Safari, Chrome Mobile)
 
 ## License
 
-This theme is open source and available under the [MIT License](LICENSE).
+This theme is provided as-is for use with Keycloak.
+
+## Credits
+
+Built with:
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Keycloak](https://www.keycloak.org/)
+- [Inter Font](https://rsms.me/inter/)
+

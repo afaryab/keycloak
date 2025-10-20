@@ -7,13 +7,13 @@
                 <#if realm.logo??>
                     <img src="${realm.logo}" alt="${realm.displayName!} Logo" class="h-8 w-8"/>
                 <#else>
-                    <img src="${url.resourcesPath}/img/logo.png" alt="${realm.displayName!} Logo" class="h-8 w-8"/>
+                    <img src="${url.resourcesPath}/${properties.logoPath!'img/logo.png'}" alt="${realm.displayName!} Logo" class="h-8 w-8"/>
                 </#if>
                 <span class="ml-3 text-lg font-semibold text-gray-900">${realm.displayName!}</span>
             </div>
             <div class="text-left">
-                <h1 class="text-2xl font-semibold text-gray-900 mb-2">Create Your Account</h1>
-                <p class="text-gray-600">Join us today and get started.</p>
+                <h1 class="text-2xl font-semibold text-gray-900 mb-2">${msg("registerWelcome")}</h1>
+                <p class="text-gray-600">${msg("registerMessage")}</p>
             </div>
         </div>
     <#elseif section = "form">
@@ -112,7 +112,7 @@
                         </#if>
 
                         <div class="form-group">
-                            <input class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 transition duration-150 ease-in-out" 
+                            <input class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition duration-150 ease-in-out" 
                                    type="submit" value="${msg("doRegister")}"/>
                         </div>
                     </div>
@@ -123,7 +123,7 @@
         <div id="kc-registration" class="mt-6 text-center">
             <div class="text-sm">
                 <span class="text-gray-600">${msg("alreadyHaveAccount")}</span>
-                <a href="${url.loginUrl}" class="font-medium text-emerald-600 hover:text-emerald-500 ml-1">
+                <a href="${url.loginUrl}" class="font-medium text-primary-600 hover:text-primary-500 ml-1">
                     ${msg("doLogIn")}
                 </a>
             </div>

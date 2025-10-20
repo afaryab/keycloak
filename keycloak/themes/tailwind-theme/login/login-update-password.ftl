@@ -2,8 +2,8 @@
 <@layout.registrationLayout displayMessage=!messagesPerField.existsError('password','password-confirm'); section>
     <#if section = "header">
         <div class="text-center">
-            <h1 class="text-3xl font-bold text-gray-900 mb-2">Update Password</h1>
-            <p class="text-gray-600">Please enter your new password</p>
+            <h1 class="text-3xl font-bold text-gray-900 mb-2">${msg("updatePasswordWelcome")}</h1>
+            <p class="text-gray-600">${msg("updatePasswordMessage")}</p>
         </div>
     <#elseif section = "form">
         <div id="kc-form">
