@@ -21,6 +21,11 @@
             <p class="text-gray-600 mb-4">
                 ${msg("verifyEmailMessage")}
             </p>
+            <#if user.email?has_content>
+                <p class="text-sm text-gray-500 mt-2">
+                    Email sent to: <span class="font-medium text-primary-600">${user.email}</span>
+                </p>
+            </#if>
         </div>
     </#if>
 </@layout.registrationLayout>
